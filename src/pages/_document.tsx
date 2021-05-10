@@ -14,7 +14,7 @@ class MyDocument extends Document {
                     <link rel="manifest" href="/assets/app/manifest.json" />
                     <meta name="mobile-web-app-capable" content="yes" />
 
-                    <meta name="application-name" content="Opener Studio" />
+                    <meta name="application-name" content="Meme Gallery" />
                     <meta name="mssmarttagspreventparsing" content="true" />
                     <meta
                         name="msapplication-window"
@@ -22,7 +22,7 @@ class MyDocument extends Document {
                     />
 
                     <meta name="apple-mobile-web-app-capable" content="yes" />
-                    <meta name="apple-mobile-web-app-title" content="Opener" />
+                    <meta name="apple-mobile-web-app-title" content="Meme" />
                     <link
                         rel="apple-touch-icon"
                         href="/assets/app/icon/icon@512.jpg"

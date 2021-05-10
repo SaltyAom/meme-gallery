@@ -1,12 +1,14 @@
 import { ChangeEvent, FunctionComponent } from 'react'
 
+import { useAtom } from 'jotai'
+import { searchAtom } from 'src/stores/search'
+
+import Head from 'next/head'
 import Link from 'next/link'
 
 import { Search } from 'react-feather'
 
 import { tw } from '@services'
-import { useAtom } from 'jotai'
-import { searchAtom } from 'src/stores/search'
 
 // eslint-disable-next-line arrow-body-style
 export const AppLayout: FunctionComponent = ({ children }) => {
@@ -22,7 +24,12 @@ export const AppLayout: FunctionComponent = ({ children }) => {
 
     return (
         <>
-            <nav className={tw`fixed z-50 w-full h-[68px] bg-white dark:bg-gray-700`}>
+            <Head>
+                <title>Meme Gallery</title>
+            </Head>
+            <nav
+                className={tw`fixed z-50 w-full h-[68px] bg-white dark:bg-gray-700`}
+            >
                 <div
                     className={tw`flex flex-row items-center h-full px-4 pt-3 pb-2`}
                 >

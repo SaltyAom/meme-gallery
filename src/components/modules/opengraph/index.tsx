@@ -10,7 +10,6 @@ const OpenGraphMeta: OpenGraphComponent = ({
     image = coverImage
 }) => (
     <>
-        <title>{title}</title>
         <meta name="title" content={title} />
         <meta name="description" content={description} />
 
@@ -25,14 +24,7 @@ const OpenGraphMeta: OpenGraphComponent = ({
         <meta name="twitter:image" content={`${web}/${image}`} />
 
         <link rel="canonical" href={web} />
-
-        <link
-            rel="icon"
-            href={
-                favicon ??
-                'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐳</text></svg>'
-            }
-        />
+        <link rel="icon" href={`/${favicon}`} />
 
         {/* // ? Opengraph */}
         {/* <script

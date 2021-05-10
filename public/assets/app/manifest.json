@@ -1,0 +1,20 @@
+{
+	"short_name": "Meme",
+	"name": "Meme Gallery",
+	"icons": [
+		{
+			"src": "/assets/app/icon/icon@192.jpg",
+			"type": "image/jpg",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/assets/app/icon/icon@512.png",
+			"type": "image/jpg",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"scope": "/",
+	"orientation": "portrait"
+}
