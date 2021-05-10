@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+import Head from 'next/head'
 
 import { Provider } from 'jotai'
 
@@ -7,16 +9,29 @@ import { AppProps } from 'next/app'
 import '@styles/init.sass'
 
 const App = ({ Component, pageProps }: AppProps) => {
+    let [isDarkTheme, setDarkTheme] = useState(false)
+
     useEffect(() => {
         document.addEventListener('touchstart', () => null, {
             passive: true
         })
+
+        window
+            .matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', ({ matches }) => {
+                setDarkTheme(matches)
+            })
     }, [])
 
     return (
-        <Provider>
-            <Component {...pageProps} />
-        </Provider>
+        <>
+            <Head>
+                <meta name="theme-color" content={isDarkTheme ? '#1f2937' : '#ffffff'} />
+            </Head>
+            <Provider>
+                <Component {...pageProps} />
+            </Provider>
+        </>
     )
 }
 
