@@ -3,13 +3,13 @@
 	"name": "Meme Gallery",
 	"icons": [
 		{
-			"src": "/assets/app/icon/icon@192.jpg",
-			"type": "image/jpg",
+			"src": "/assets/app/icon/icon@192.png",
+			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
 			"src": "/assets/app/icon/icon@512.png",
-			"type": "image/jpg",
+			"type": "image/png",
 			"sizes": "512x512"
 		}
 	],

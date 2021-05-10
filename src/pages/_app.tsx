@@ -16,6 +16,8 @@ const App = ({ Component, pageProps }: AppProps) => {
             passive: true
         })
 
+        setDarkTheme(window.matchMedia('(prefers-color-scheme: dark)').matches)
+
         window
             .matchMedia('(prefers-color-scheme: dark)')
             .addEventListener('change', ({ matches }) => {
@@ -26,7 +28,10 @@ const App = ({ Component, pageProps }: AppProps) => {
     return (
         <>
             <Head>
-                <meta name="theme-color" content={isDarkTheme ? '#1f2937' : '#ffffff'} />
+                <meta
+                    name="theme-color"
+                    content={isDarkTheme ? '#1f2937' : '#ffffff'}
+                />
             </Head>
             <Provider>
                 <Component {...pageProps} />
