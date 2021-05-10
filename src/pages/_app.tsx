@@ -30,7 +30,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <Head>
                 <meta
                     name="theme-color"
-                    content={isDarkTheme ? '#1f2937' : '#ffffff'}
+                    content={isDarkTheme ? '#374151' : '#ffffff'}
                 />
             </Head>
             <Provider>
