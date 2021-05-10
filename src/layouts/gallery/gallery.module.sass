@@ -1,0 +1,10 @@
+.gallery
+    @apply grid
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr))
+    gap: 4px
+
+    @screen lg
+        grid-template-columns: repeat(auto-fill, minmax(205px, 1fr))
+
+    @screen 2xl
+        grid-template-columns: repeat(auto-fill, minmax(245px, 1fr))
