@@ -1,7 +1,5 @@
 import { useEffect, useReducer, useRef } from 'react'
 
-import dynamic from 'next/dynamic'
-
 import tw, { combine } from '@tailwind'
 
 import { Blurhash } from 'react-blurhash'
@@ -9,14 +7,11 @@ import { Blurhash } from 'react-blurhash'
 import { extract } from '@services/search'
 import { isInStandaloneMode, isIos } from '@services/validation'
 
+import { Viewer } from '../viewer'
+
 import { PhotoComponent } from './types'
 
 import styles from './photo.module.sass'
-
-// @ts-ignore
-const Viewer = dynamic(() =>
-    import('../viewer').then((module) => module.Viewer)
-)
 
 export const Photo: PhotoComponent = ({ file, blurhash }) => {
     let [isIntersect, setIntersect] = useReducer(() => true, false)
