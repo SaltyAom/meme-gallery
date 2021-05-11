@@ -89,15 +89,15 @@ export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
 
     let blurhashMap: Record<string, Blurhash> = {}
 
-    await Promise.all(
-        files.map((file) =>
-            promisify(readFile)(`./public/meme/${file}`)
-                .then((image) => getBlurhash(image))
-                .then((blurhash) => {
-                    blurhashMap[file] = blurhash
-                })
-        )
-    )
+    // await Promise.all(
+    //     files.map((file) =>
+    //         promisify(readFile)(`./public/meme/${file}`)
+    //             .then((image) => getBlurhash(image))
+    //             .then((blurhash) => {
+    //                 blurhashMap[file] = blurhash
+    //             })
+    //     )
+    // )
 
     return {
         props: {
