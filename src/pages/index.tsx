@@ -11,9 +11,9 @@ import { AppLayout, GalleryLayout } from '@layouts'
 
 import { Photo } from '@components/atoms'
 
-import { createEngine, extract, Engine } from '@services/search'
-import { tw } from '@services'
 import { Blurhash, getBlurhash } from '@plaiceholder/blurhash'
+import { createEngine, extract, Engine } from '@services/search'
+import tw from '@tailwind'
 
 interface GalleryProps {
     files: string[]

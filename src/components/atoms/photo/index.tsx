@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react'
 
-import { Blurhash } from 'react-blurhash'
+// import { Blurhash } from 'react-blurhash'
 
 import tw, { combine } from '@tailwind'
 
@@ -76,7 +76,7 @@ export const Photo: PhotoComponent = ({ file, blurhash }) => {
                 src={isIntersect ? source : ''}
                 alt={file}
             />
-            <Blurhash
+            {/* <Blurhash
                 className={combine(
                     tw(`z-0 object-cover object-center`),
                     styles.blurhash
@@ -87,7 +87,7 @@ export const Photo: PhotoComponent = ({ file, blurhash }) => {
                 resolutionX={32}
                 resolutionY={32}
                 punch={1}
-            />
+            /> */}
         </div>
     )
 
