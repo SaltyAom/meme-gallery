@@ -18,7 +18,7 @@
 		"@plaiceholder/svg": "^1.0.0",
 		"fuse.js": "^6.4.6",
 		"jotai": "^0.16.4",
-		"next": "^10.0.5",
+		"next": "^10.2.0",
 		"preact": "^10.5.13",
 		"react": "npm:@preact/compat",
 		"react-blurhash": "^0.1.3",
