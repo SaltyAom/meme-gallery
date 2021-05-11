@@ -8,9 +8,10 @@ import Link from 'next/link'
 
 import { Search } from 'react-feather'
 
-import { tw } from '@services'
+import tw, { combine } from '@tailwind'
 
-// eslint-disable-next-line arrow-body-style
+import styles from './app.module.sass'
+
 export const AppLayout: FunctionComponent = ({ children }) => {
     let [, updateSearch] = useAtom(searchAtom)
 
@@ -28,10 +29,10 @@ export const AppLayout: FunctionComponent = ({ children }) => {
                 <title>Meme Gallery</title>
             </Head>
             <nav
-                className={tw`fixed z-50 w-full h-[68px] bg-white dark:bg-gray-700`}
+                className={tw`fixed z-50 w-full h-[68px] bg-transparent sm:bg-white sm:dark:bg-gray-700`}
             >
                 <div
-                    className={tw`flex flex-row items-center h-full px-4 pt-3 pb-2`}
+                    className={tw`flex flex-row items-center h-full px-4 py-2`}
                 >
                     <Link href="/">
                         <a
@@ -43,11 +44,16 @@ export const AppLayout: FunctionComponent = ({ children }) => {
                         </a>
                     </Link>
                     <form
-                        className={tw`flex flex-row flex-1 items-center h-full px-3 bg-gray-100 dark:bg-gray-800 rounded text-gray-800`}
+                        className={combine(
+                            tw`flex flex-row flex-1 w-100 sm:w-auto items-center text-gray-800 h-full px-3 rounded`,
+                            styles.search
+                        )}
                     >
-                        <Search className={tw`text-gray-400 mr-2`} />
+                        <Search
+                            className={tw`text-gray-400 mr-2 min-w-[24px]`}
+                        />
                         <input
-                            className={tw`flex-1 h-full text-gray-800 dark:text-gray-300 text-2xl font-medium border-0 bg-transparent outline-none`}
+                            className={tw`flex-1 w-full h-full text-gray-800 dark:text-gray-300 text-2xl font-medium border-0 bg-transparent outline-none`}
                             type="text"
                             placeholder="Search"
                             onChange={handleSearch}

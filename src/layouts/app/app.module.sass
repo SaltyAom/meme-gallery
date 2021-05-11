@@ -1,0 +1,15 @@
+.search
+    background-color: rgba(209, 213, 219, .8)
+    box-shadow: 0 4px 16px rgba(0,0,0,.125)
+    backdrop-filter: blur(8px)
+
+    @media (prefers-color-scheme: dark)
+        background-color: rgba(55, 65, 81, .75)
+        box-shadow: 0 4px 16px rgba(0,0,0,.75)
+
+    @screen sm
+        @apply bg-gray-100
+        box-shadow: unset
+
+        @media (prefers-color-scheme: dark)
+            @apply bg-gray-800
