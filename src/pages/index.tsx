@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 import { useAtom } from 'jotai'
 import { searchAtom } from 'src/stores/search'
 
-import { readdirSync, readFile } from 'fs'
+import { readdirSync, readFileSync } from 'fs'
 import { promisify } from 'util'
 
 import { AppLayout, GalleryLayout } from '@layouts'
@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
 
     let blurhashMap: Record<string, Blurhash> = {}
 
-    let image = await promisify(readFile)(`./public/meme/${files[0]}`)
+    let image = readFileSync(`./public/meme/${files[0]}`)
     blurhashMap[files[0]] = await getBlurhash(image)
 
     // await Promise.all(
