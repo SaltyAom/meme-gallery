@@ -61,7 +61,7 @@ module.exports = withPlugins(
             loader: 'default'
         },
         webpack(config) {
-            useEsbuildLoader(config)
+            // useEsbuildLoader(config)
 
             config.resolve.alias = {
                 ...config.resolve.alias,
