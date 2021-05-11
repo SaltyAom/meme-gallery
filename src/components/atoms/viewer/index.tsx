@@ -59,7 +59,7 @@ export const Viewer: ViewerComponent = ({
                 type="button"
                 title={title}
                 aria-label={title}
-                className={tw`appearance-none bg-transparent border-0 p-0`}
+                className={tw`appearance-none bg-transparent border-0 m-0 p-0`}
                 onClick={toggleViewer}
             >
                 {children}

@@ -7,7 +7,6 @@ import { Blurhash } from 'react-blurhash'
 import { extract } from '@services/search'
 import { isInStandaloneMode, isIos } from '@services/validation'
 
-import { Viewer } from '../viewer'
 
 import { PhotoComponent } from './types'
 
@@ -95,9 +94,16 @@ export const Photo: PhotoComponent = ({ file, blurhash }) => {
     )
 
     return (
-        <li className={tw`flex flex-col no-underline`}>
+        <li className={tw`flex flex-col no-underline select-none`}>
             {isInStandaloneMode() && isIos() ? (
-                <Viewer photo={photo}>{Image}</Viewer>
+                <a
+                    className={tw`flex flex-col no-underline`}
+                    href={source}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    {Image}
+                </a>
             ) : (
                 <a
                     className={tw`flex flex-col no-underline`}
