@@ -29,7 +29,7 @@ export const AppLayout: FunctionComponent = ({ children }) => {
                 <title>Meme Gallery</title>
             </Head>
             <nav
-                className={tw`fixed z-50 w-full h-[68px] bg-transparent sm:bg-white sm:dark:bg-gray-700`}
+                className={tw`fixed z-30 w-full h-[68px] bg-transparent sm:bg-white sm:dark:bg-gray-700`}
             >
                 <div
                     className={tw`flex flex-row items-center h-full px-4 py-2`}
