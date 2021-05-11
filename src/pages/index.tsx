@@ -4,20 +4,21 @@ import { GetStaticProps } from 'next'
 import { useAtom } from 'jotai'
 import { searchAtom } from 'src/stores/search'
 
-import { readdirSync, readFileSync } from 'fs'
+import { readdirSync, readFile } from 'fs'
 import { promisify } from 'util'
 
 import { AppLayout, GalleryLayout } from '@layouts'
 
 import { Photo } from '@components/atoms'
 
-import { Blurhash, getBlurhash } from '@plaiceholder/blurhash'
+import { getBase64 } from '@plaiceholder/base64'
 import { createEngine, extract, Engine } from '@services/search'
+
 import tw from '@tailwind'
 
 interface GalleryProps {
     files: string[]
-    blurhashMap: Record<string, Blurhash>
+    blurhashMap: Record<string, string>
 }
 
 const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
@@ -87,20 +88,17 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
 export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
     let files = readdirSync('./public/meme')
 
-    let blurhashMap: Record<string, Blurhash> = {}
+    let blurhashMap: Record<string, string> = {}
 
-    let image = readFileSync(`./public/meme/${files[0]}`)
-    blurhashMap[files[0]] = await getBlurhash(image)
-
-    // await Promise.all(
-    //     files.map((file) =>
-    //         promisify(readFile)(`./public/meme/${file}`)
-    //             .then((image) => getBlurhash(image))
-    //             .then((blurhash) => {
-    //                 blurhashMap[file] = blurhash
-    //             })
-    //     )
-    // )
+    await Promise.all(
+        files.map((file) =>
+            promisify(readFile)(`./public/meme/${file}`)
+                .then((image) => getBase64(image))
+                .then((blurhash) => {
+                    blurhashMap[file] = blurhash
+                })
+        )
+    )
 
     return {
         props: {
