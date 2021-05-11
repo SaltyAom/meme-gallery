@@ -1,5 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react'
 
+import { Blurhash } from 'react-blurhash'
+
 import tw, { combine } from '@tailwind'
 
 import { extract } from '@services/search'
@@ -42,7 +44,7 @@ export const Photo: PhotoComponent = ({ file, blurhash }) => {
     let Image = (
         <div
             className={combine(
-                tw`relative w-full aspect-w-1 aspect-h-1 bg-gray-50 dark:bg-gray-700 overflow-hidden`,
+                tw`relative w-full aspect-w-1 aspect-h-1 bg-gray-50 dark:bg-gray-700`,
                 styles.wrapper
             )}
             ref={image}
@@ -74,13 +76,17 @@ export const Photo: PhotoComponent = ({ file, blurhash }) => {
                 src={isIntersect ? source : ''}
                 alt={file}
             />
-            <img
-                src={blurhash}
+            <Blurhash
                 className={combine(
-                    tw(`absolute w-full h-full z-0 object-cover object-center`),
+                    tw(`z-0 object-cover object-center`),
                     styles.blurhash
                 )}
-                alt={`${file}'s blurhash`}
+                hash={blurhash.hash}
+                width={blurhash.width}
+                height={blurhash.height}
+                resolutionX={32}
+                resolutionY={32}
+                punch={1}
             />
         </div>
     )

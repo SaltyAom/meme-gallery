@@ -13,9 +13,7 @@
 		"lint": "eslint 'src/**/*.{ts,tsx}'"
 	},
 	"dependencies": {
-		"@plaiceholder/base64": "^1.0.0",
 		"@plaiceholder/blurhash": "^1.0.0",
-		"@plaiceholder/svg": "^1.0.0",
 		"fuse.js": "^6.4.6",
 		"jotai": "^0.16.4",
 		"next": "^10.2.0",

@@ -11,14 +11,14 @@ import { AppLayout, GalleryLayout } from '@layouts'
 
 import { Photo } from '@components/atoms'
 
-import { getBase64 } from '@plaiceholder/base64'
+import { getBlurhash, Blurhash } from '@plaiceholder/blurhash'
 import { createEngine, extract, Engine } from '@services/search'
 
 import tw from '@tailwind'
 
 interface GalleryProps {
     files: string[]
-    blurhashMap: Record<string, string>
+    blurhashMap: Record<string, Blurhash>
 }
 
 const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
@@ -88,12 +88,12 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
 export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
     let files = readdirSync('./public/meme')
 
-    let blurhashMap: Record<string, string> = {}
+    let blurhashMap: Record<string, Blurhash> = {}
 
     await Promise.all(
         files.map((file) =>
             promisify(readFile)(`./public/meme/${file}`)
-                .then((image) => getBase64(image))
+                .then((image) => getBlurhash(image))
                 .then((blurhash) => {
                     blurhashMap[file] = blurhash
                 })
