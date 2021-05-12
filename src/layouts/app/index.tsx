@@ -1,4 +1,4 @@
-import { ChangeEvent, FunctionComponent } from 'react'
+import { ChangeEvent, FunctionComponent, useRef } from 'react'
 
 import { useAtom } from 'jotai'
 import { searchAtom } from 'src/stores/search'
@@ -14,13 +14,20 @@ import styles from './app.module.sass'
 
 export const AppLayout: FunctionComponent = ({ children }) => {
     let [, updateSearch] = useAtom(searchAtom)
+    let previousTimeout = useRef<any>(null)
 
     let handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
         let {
             currentTarget: { value }
         } = event
 
-        updateSearch(value)
+        clearTimeout(previousTimeout.current)
+
+        if (value === '') return updateSearch(value)
+
+        previousTimeout.current = setTimeout(() => {
+            updateSearch(value)
+        }, 95)
     }
 
     return (

@@ -2,10 +2,10 @@ import { FunctionComponent } from 'react'
 
 import { Blurhash } from '@plaiceholder/blurhash'
 
-export interface PhotoProps {
+export interface ImageProps {
     file: string
     blurhash: Blurhash
-    showPlaceholder?: boolean
+    isIntersect: boolean
 }
 
-export type PhotoComponent = FunctionComponent<PhotoProps>
+export type ImageComponent = FunctionComponent<ImageProps>

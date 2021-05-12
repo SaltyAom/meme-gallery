@@ -12,7 +12,24 @@ export const createEngine = async (photos: Photos) => {
 }
 
 export const extract = (file: string): Photo => {
+    if (typeof file === 'undefined')
+        return {
+            character: '',
+            detail: '',
+            extension: '',
+            file: ''
+        }
+
     let [character, description] = file.split(' - ')
+
+    if (typeof description === 'undefined')
+        return {
+            character: '',
+            detail: '',
+            extension: '',
+            file: ''
+        }
+
     let [detail, extension] = description.split('.')
 
     return {

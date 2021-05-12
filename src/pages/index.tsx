@@ -13,6 +13,7 @@ import { Photo } from '@components/atoms'
 
 import { getBlurhash, Blurhash } from '@plaiceholder/blurhash'
 import { createEngine, extract, Engine } from '@services/search'
+import { ascending } from '@services/sort'
 
 import tw from '@tailwind'
 
@@ -35,9 +36,9 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
 
     let results = engine?.search(search) ?? null
 
-    if (search) {
+    if (search)
         return (
-            <AppLayout>
+            <AppLayout key="app-layout">
                 {results && results.length ? (
                     <GalleryLayout>
                         {results.map(({ item: { file } }) => (
@@ -66,27 +67,29 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
                 )}
             </AppLayout>
         )
-    }
 
     return (
-        <AppLayout>
+        <AppLayout key="app-layout">
             <GalleryLayout>
-                {files
-                    .sort((a, b) => a.localeCompare(b, 'th'))
-                    .map((file) => (
-                        <Photo
-                            key={file}
-                            file={file}
-                            blurhash={blurhashMap[file]}
-                        />
-                    ))}
+                {files.sort(ascending).map((file, index) => (
+                    <Photo
+                        key={file}
+                        file={file}
+                        blurhash={blurhashMap[file]}
+                        showPlaceholder={index <= 28}
+                    />
+                ))}
             </GalleryLayout>
         </AppLayout>
     )
 }
 
 export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
+    let blacklist = ['.DS_Store']
+
     let files = readdirSync('./public/meme')
+        .filter((file) => !blacklist.includes(file))
+        .sort(ascending)
 
     let blurhashMap: Record<string, Blurhash> = {}
 
