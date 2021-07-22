@@ -66,6 +66,11 @@ module.exports = withPlugins(
         webpack(config) {
             useEsbuildLoader(config)
 
+            config.externals = {
+                ...config.externals,
+                sharp: 'commonjs sharp'
+            }
+
             config.resolve.alias = {
                 ...config.resolve.alias,
                 '@pages': join(__dirname, 'src/pages'),
