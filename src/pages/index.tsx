@@ -4,14 +4,12 @@ import { GetStaticProps } from 'next'
 import { useAtom } from 'jotai'
 import { searchAtom } from 'src/stores/search'
 
-import { readdirSync, readFile } from 'fs'
-import { promisify } from 'util'
+import { readdirSync } from 'fs'
 
 import { AppLayout, GalleryLayout } from '@layouts'
 
 import { Photo } from '@components/atoms'
 
-import { getBlurhash, Blurhash } from '@plaiceholder/blurhash'
 import { createEngine, extract, Engine } from '@services/search'
 import { ascending } from '@services/sort'
 
@@ -19,10 +17,9 @@ import tw from '@tailwind'
 
 interface GalleryProps {
     files: string[]
-    blurhashMap: Record<string, Blurhash>
 }
 
-const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
+const Gallery: FunctionComponent<GalleryProps> = ({ files }) => {
     let [engine, updateEngine] = useState<Engine | null>(null)
     let [search] = useAtom(searchAtom)
 
@@ -42,11 +39,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
                 {results && results.length ? (
                     <GalleryLayout>
                         {results.map(({ item: { file } }) => (
-                            <Photo
-                                key={file}
-                                file={file}
-                                blurhash={blurhashMap[file]}
-                            />
+                            <Photo key={file} file={file} />
                         ))}
                     </GalleryLayout>
                 ) : (
@@ -75,7 +68,6 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files, blurhashMap }) => {
                     <Photo
                         key={file}
                         file={file}
-                        blurhash={blurhashMap[file]}
                         showPlaceholder={index <= 28}
                     />
                 ))}
@@ -91,22 +83,9 @@ export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
         .filter((file) => !blacklist.includes(file))
         .sort(ascending)
 
-    let blurhashMap: Record<string, Blurhash> = {}
-
-    await Promise.all(
-        files.map((file) =>
-            promisify(readFile)(`./public/meme/${file}`)
-                .then((image) => getBlurhash(image))
-                .then((blurhash) => {
-                    blurhashMap[file] = blurhash
-                })
-        )
-    )
-
     return {
         props: {
-            files,
-            blurhashMap
+            files
         }
     }
 }

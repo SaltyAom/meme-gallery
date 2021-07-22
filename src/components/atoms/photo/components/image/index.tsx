@@ -1,14 +1,12 @@
 import tw, { combine } from '@tailwind'
 
-import { Blurhash } from 'react-blurhash'
-
 import { extract } from '@services/search'
 
 import styles from '../image.module.sass'
 
 import { ImageComponent } from './types'
 
-export const Image: ImageComponent = ({ file, blurhash, isIntersect }) => {
+export const Image: ImageComponent = ({ file, isIntersect }) => {
     let photo = extract(file)
     let { detail, character } = photo
     let source = `/meme/${file}`
@@ -42,20 +40,6 @@ export const Image: ImageComponent = ({ file, blurhash, isIntersect }) => {
                 src={isIntersect ? source : ''}
                 alt={file}
             />
-            {blurhash && typeof blurhash.hash !== 'undefined' ? (
-                <Blurhash
-                    className={combine(
-                        tw(`z-0 object-cover object-center`),
-                        styles.blurhash
-                    )}
-                    hash={blurhash.hash}
-                    width={blurhash.width}
-                    height={blurhash.height}
-                    resolutionX={32}
-                    resolutionY={32}
-                    punch={1}
-                />
-            ) : null}
         </>
     )
 }

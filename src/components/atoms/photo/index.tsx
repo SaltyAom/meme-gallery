@@ -7,7 +7,7 @@ import { useIntersectionObserver, useNearObserver } from './hooks'
 
 import { PhotoComponent } from './types'
 
-export const Photo: PhotoComponent = ({ file, blurhash }) => {
+export const Photo: PhotoComponent = ({ file }) => {
     let image = useRef<HTMLImageElement>(null)
 
     let isNear = useNearObserver(image)
@@ -22,7 +22,6 @@ export const Photo: PhotoComponent = ({ file, blurhash }) => {
             >
                 <Image
                     file={file}
-                    blurhash={blurhash}
                     isIntersect={isIntersected}
                 />
             </ImageWrapper>
