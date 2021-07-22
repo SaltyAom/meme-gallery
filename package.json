@@ -20,7 +20,6 @@
 		"react": "npm:@preact/compat",
 		"react-dom": "npm:@preact/compat",
 		"react-feather": "^2.0.9",
-		"sharp": "^0.28.3",
 		"tailwindcss": "^2.2.6"
 	},
 	"devDependencies": {
