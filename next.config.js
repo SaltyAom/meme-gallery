@@ -11,7 +11,6 @@ const withPreact = require('next-plugin-preact')
 const withPlugins = require('next-compose-plugins')
 
 const withStyles = require('./tools/withStyles')
-const { useEsbuildLoader } = require('./tools/useEsbuild')
 
 module.exports = withPlugins(
     [
@@ -64,13 +63,6 @@ module.exports = withPlugins(
             loader: 'default'
         },
         webpack(config) {
-            useEsbuildLoader(config)
-
-            config.externals = {
-                ...config.externals,
-                sharp: 'commonjs sharp'
-            }
-
             config.resolve.alias = {
                 ...config.resolve.alias,
                 '@pages': join(__dirname, 'src/pages'),
