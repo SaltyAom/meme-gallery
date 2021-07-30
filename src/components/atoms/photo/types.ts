@@ -1,7 +1,10 @@
-import { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
+
+import type { StaticImageData } from 'src/types'
 
 export interface PhotoProps {
-    file: string
+    file: StaticImageData
+    name: string
     showPlaceholder?: boolean
 }
 

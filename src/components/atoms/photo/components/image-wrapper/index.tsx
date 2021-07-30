@@ -3,7 +3,7 @@ import tw, { combine } from '@tailwind'
 import { isInStandaloneMode, isIos } from '@services/validation'
 import { extract } from '@services/search'
 
-import { ImageWrapperComponent } from './types'
+import type { ImageWrapperComponent } from './types'
 
 import styles from '../image.module.sass'
 
@@ -11,9 +11,9 @@ export const ImageWrapper: ImageWrapperComponent = ({
     children,
     observeRoot,
     showImageComponent,
-    file
+    name
 }) => {
-    let source = `/meme/${file}`
+    let source = `/meme/${name}`
 
     let layout = (
         <div
@@ -39,7 +39,7 @@ export const ImageWrapper: ImageWrapperComponent = ({
             </a>
         )
 
-    let { detail, extension } = extract(file)
+    let { detail, extension } = extract(name)
 
     return (
         <a

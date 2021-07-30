@@ -12,6 +12,8 @@
                     "@styles": "./src/styles",
                     "@services": "./src/services",
                     "@models": "./src/models",
+                    "@stores": "./src/stores",
+                    "@public": "./public",
                     "@tailwind": "./src/services/tailwind/index.ts",
                     "~": "./"
                 }

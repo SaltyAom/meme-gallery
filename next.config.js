@@ -54,8 +54,8 @@ module.exports = withPlugins(
             polyfillsOptimization: true
         },
         images: {
-            deviceSizes: [640, 750, 828, 1080],
-            imageSizes: [16, 32, 48, 64, 96],
+            deviceSizes: [480],
+            imageSizes: [64],
             path: '/_next/image',
             loader: 'default'
         },
@@ -68,6 +68,8 @@ module.exports = withPlugins(
                 '@styles': join(__dirname, 'src/styles'),
                 '@services': join(__dirname, 'src/services'),
                 '@models': join(__dirname, 'src/models'),
+                '@stores': join(__dirname, 'src/stores'),
+                '@public': join(__dirname, 'public'),
                 '@tailwind': join(__dirname, 'src/services/tailwind/index.ts')
             }
 

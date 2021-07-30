@@ -5,9 +5,9 @@ import tw from '@tailwind'
 import { Image, ImageWrapper } from './components'
 import { useIntersectionObserver, useNearObserver } from './hooks'
 
-import { PhotoComponent } from './types'
+import type { PhotoComponent } from './types'
 
-export const Photo: PhotoComponent = ({ file }) => {
+export const Photo: PhotoComponent = ({ file, name }) => {
     let image = useRef<HTMLImageElement>(null)
 
     let isNear = useNearObserver(image)
@@ -16,14 +16,11 @@ export const Photo: PhotoComponent = ({ file }) => {
     return (
         <li className={tw`flex flex-col no-underline select-none`}>
             <ImageWrapper
-                file={file}
+                name={name}
                 observeRoot={image}
                 showImageComponent={isNear}
             >
-                <Image
-                    file={file}
-                    isIntersect={isIntersected}
-                />
+                <Image name={name} file={file} isIntersect={isIntersected} />
             </ImageWrapper>
         </li>
     )

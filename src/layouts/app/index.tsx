@@ -1,7 +1,7 @@
 import { ChangeEvent, FunctionComponent, useRef } from 'react'
 
 import { useAtom } from 'jotai'
-import { searchAtom } from 'src/stores/search'
+import { searchAtom } from '@stores/search'
 
 import Head from 'next/head'
 import Link from 'next/link'

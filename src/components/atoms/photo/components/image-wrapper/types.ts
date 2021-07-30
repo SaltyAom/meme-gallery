@@ -1,7 +1,7 @@
-import { FunctionComponent, RefObject } from 'react'
+import type { FunctionComponent, RefObject } from 'react'
 
 export interface ImageWrapperProps {
-    file: string
+    name: string
     observeRoot: RefObject<HTMLImageElement>
     showImageComponent: boolean
 }

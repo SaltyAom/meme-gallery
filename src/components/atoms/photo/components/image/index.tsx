@@ -1,15 +1,16 @@
+import NextImage from 'next/image'
+
 import tw, { combine } from '@tailwind'
 
 import { extract } from '@services/search'
 
 import styles from '../image.module.sass'
 
-import { ImageComponent } from './types'
+import type { ImageComponent } from './types'
 
-export const Image: ImageComponent = ({ file, isIntersect }) => {
-    let photo = extract(file)
-    let { detail, character } = photo
-    let source = `/meme/${file}`
+export const Image: ImageComponent = ({ file, name, isIntersect }) => {
+    let photo = extract(name)
+    let { detail, character, extension } = photo
 
     return (
         <>
@@ -30,16 +31,30 @@ export const Image: ImageComponent = ({ file, isIntersect }) => {
                     {detail}
                 </h4>
             </div>
-            <img
-                className={tw(
-                    `z-10 w-full object-cover object-center ${
-                        !isIntersect ? 'opacity-0' : ''
-                    }`
+            <div className={styles.image}>
+                {extension !== 'gif' ? (
+                    <NextImage
+                        className={tw(
+                            `w-full h-full object-cover object-center ${
+                                !isIntersect ? 'opacity-0' : ''
+                            }`
+                        )}
+                        src={file}
+                        placeholder="blur"
+                        alt={name}
+                    />
+                ) : (
+                    <img
+                        src={file.src}
+                        className={tw(
+                            `w-full h-full object-cover object-center ${
+                                !isIntersect ? 'opacity-0' : ''
+                            }`
+                        )}
+                        alt={name}
+                    />
                 )}
-                key={file}
-                src={isIntersect ? source : ''}
-                alt={file}
-            />
+            </div>
         </>
     )
 }

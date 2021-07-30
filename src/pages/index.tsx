@@ -1,31 +1,25 @@
-import { FunctionComponent, useState, useEffect } from 'react'
-import { GetStaticProps } from 'next'
+import { useState, useEffect } from 'react'
 
 import { useAtom } from 'jotai'
-import { searchAtom } from 'src/stores/search'
-
-import { readdirSync } from 'fs'
+import { searchAtom } from '@stores/search'
 
 import { AppLayout, GalleryLayout } from '@layouts'
 
 import { Photo } from '@components/atoms'
 
 import { createEngine, extract, Engine } from '@services/search'
-import { ascending } from '@services/sort'
+// import { ascending } from '@services/sort'
+import images from '@services/images'
 
 import tw from '@tailwind'
 
-interface GalleryProps {
-    files: string[]
-}
-
-const Gallery: FunctionComponent<GalleryProps> = ({ files }) => {
+const Gallery = () => {
     let [engine, updateEngine] = useState<Engine | null>(null)
     let [search] = useAtom(searchAtom)
 
     useEffect(() => {
         let applyEngine = async () => {
-            updateEngine(await createEngine(files.map(extract)))
+            updateEngine(await createEngine(Object.keys(images).map(extract)))
         }
 
         applyEngine()
@@ -39,7 +33,11 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files }) => {
                 {results && results.length ? (
                     <GalleryLayout>
                         {results.map(({ item: { file } }) => (
-                            <Photo key={file} file={file} />
+                            <Photo
+                                key={file}
+                                file={images[file as keyof typeof images]}
+                                name={file}
+                            />
                         ))}
                     </GalleryLayout>
                 ) : (
@@ -64,30 +62,17 @@ const Gallery: FunctionComponent<GalleryProps> = ({ files }) => {
     return (
         <AppLayout key="app-layout">
             <GalleryLayout>
-                {files.sort(ascending).map((file, index) => (
+                {Object.keys(images).map((fileName, index) => (
                     <Photo
-                        key={file}
-                        file={file}
+                        key={fileName}
+                        file={images[fileName as keyof typeof images]}
+                        name={fileName}
                         showPlaceholder={index <= 28}
                     />
                 ))}
             </GalleryLayout>
         </AppLayout>
     )
-}
-
-export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
-    let blacklist = ['.DS_Store']
-
-    let files = readdirSync('./public/meme')
-        .filter((file) => !blacklist.includes(file))
-        .sort(ascending)
-
-    return {
-        props: {
-            files
-        }
-    }
 }
 
 export default Gallery

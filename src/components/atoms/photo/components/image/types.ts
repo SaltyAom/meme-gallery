@@ -1,7 +1,9 @@
-import { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
+import type { StaticImageData } from 'src/types'
 
 export interface ImageProps {
-    file: string
+    file: StaticImageData
+    name: string
     isIntersect: boolean
 }
 
